@@ -8,10 +8,10 @@ namespace UP_3._3_Console
 {
     internal class Program
     {
-        static void Function(double x, out double y) => y = x * x * x - Math.Sin(x);
+        static double Function(double x, double a, out double y) => y = (x < a) ? 0 : (x > a) ? (x - a) / (x + a) : 1;
         static void Main(string[] args)
         {
-            double a, b;
+            double a, b, h;
 
             Console.Write("Введите а: ");
             while (!double.TryParse(Console.ReadLine(), out a))
@@ -27,15 +27,20 @@ namespace UP_3._3_Console
                 Console.Write("Введите b: ");
             }
 
-            Function(a, out double f_a);
-            Function(b, out double f_b);
+            Console.Write("Введите h: ");
+            while (!double.TryParse(Console.ReadLine(), out h))
+            {
+                Console.WriteLine("Были введены неверные данные! Попробуйте снова!");
+                Console.Write("Введите h: ");
+            }
 
-            Console.WriteLine($"В точке a ({a}) функция принимает значение {f_a}");
-            Console.WriteLine($"В точке b ({b}) функция принимает значение {f_b}");
-
-            string answ = (f_a > f_b) ? "Наибольшее значение функция принимает в точке а" : (f_a < f_b) ?
-                "Наибольшее значение функция принимает в точке b" : "Значения функции в двух точках равны";
-            Console.WriteLine(answ);
+            Console.WriteLine("Таблица значений");
+            Console.WriteLine("x\t|\ty"); Console.WriteLine("__________________");
+            for (double x = a; x <= b; x += h)
+            {
+                Function(x, a, out double y);
+                Console.WriteLine($"{x}\t|\t{y}");
+            }
         }
     }
 }
