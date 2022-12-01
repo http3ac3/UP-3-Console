@@ -8,7 +8,7 @@ namespace UP_3._2_Console
 {
     internal class Program
     {
-        static double Function(double x, double a) => (x < a) ? 0 : (x > a) ? (x - a) / (x + a) : 1; 
+        static double Function(double x, double a) => (x < a) ? 0 : (x > a) ? ((x - a) / (x + a)) : 1; 
 
         static void Main(string[] args)
         {
