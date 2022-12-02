@@ -34,11 +34,20 @@ namespace UP_3._3_Console
                 Console.Write("Введите h: ");
             }
 
+            if ((a > b && h > 0) || (a < b && h < 0))
+            {
+                Console.WriteLine("Границы не определены! На указанном диапазоне шаг неверен");
+                return;
+            }
+
             Console.WriteLine("Таблица значений");
             Console.WriteLine("x\t|\ty"); Console.WriteLine("__________________");
-            for (double x = a; x <= b; x += h)
+            var count = (int)(Math.Ceiling(b - a) / h + 1);
+            for (var i = 0; i < count; i++)
             {
-                Function(x, a, out double y);
+                double y;
+                var x = a + i * h;
+                Function(x, a, out y);
                 Console.WriteLine($"{x}\t|\t{y}");
             }
         }
